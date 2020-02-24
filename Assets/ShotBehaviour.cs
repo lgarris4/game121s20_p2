@@ -12,7 +12,11 @@ public class ShotBehaviour : MonoBehaviour
     void Update()
     {
         if (lifeTime <= 0) this.gameObject.SetActive(false);
-
+        Vector3 tempPos = transform.position;
+        tempPos += transform.forward * (Time.deltaTime * _shotSpeed);
+        transform.position = tempPos;
+        transform.Rotate(Vector3.up, _shotRotation * Time.deltaTime);
+        lifeTime -= Time.deltaTime;
     }
 
     public void InitShot()
